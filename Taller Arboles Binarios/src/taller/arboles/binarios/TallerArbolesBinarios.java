@@ -31,34 +31,43 @@ public class TallerArbolesBinarios {
                     + "2. Obtener el nivel de un número dado\n"
                     + "3. Averiguar cuantos NODOS hay en el arbol\n"
                     + "4. Averiguar cuantas HOJAS hay en el árbol\n"
+                    + "5. Ver la profundidad del árbol\n"
                     + ". Salir");
-            switch (opcion) {
-                case 1:
-                    System.out.print("Por favor ingrese el dato a guardar: ");
-                    try {
+            arbBin.insertar(4);
+            arbBin.insertar(2);
+            arbBin.insertar(8);
+            arbBin.insertar(1);
+            arbBin.insertar(3);
+            arbBin.insertar(9);
+            try {
+                opcion = Integer.parseInt(sc.nextLine());
+                System.out.println(opcion);
+                switch (opcion) {
+                    case 1:
+                        System.out.print("Por favor ingrese el dato a guardar: ");
                         dato = Integer.parseInt(sc.nextLine());
                         arbBin.insertar(dato);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Por favor ingrese un número");
-                    }
-                    break;
-                case 2: 
-                    System.out.print("Por favor ingrese el dato al cual buscar su nivel: ");
-                    try {
+                        break;
+                    case 2:
+                        System.out.print("Por favor ingrese el dato al cual buscar su nivel: ");
                         dato = Integer.parseInt(sc.nextLine());
                         System.out.println("El nivel del nodo " + dato + " es el " + arbBin.buscar(dato));
-                    } catch (NumberFormatException e) {
-                        System.out.println("Por favor ingrese un número");
-                    }                    
-                    break;
-                case 3:
-                    System.out.println("La cantidad de nodos existentes son: " + arbBin.getCantidadNodos());
-                    break;
-                case 4:
-                    System.out.println("La cantidad de nodos hoja son: " + arbBin.getNumHojas());
-                    break;
-                default:
-                    seguir = false;
+                        break;
+                    case 3:
+                        System.out.println("La cantidad de nodos existentes son: " + arbBin.getCantidadNodos());
+                        break;
+                    case 4:
+                        System.out.println("La cantidad de nodos hoja son: " + arbBin.getNumHojas());
+                        break;
+                    case 5:
+                        System.out.println("La profundidad del árbol es: " + arbBin.getProfundidadArbol());
+                        break;
+                    default:
+                        seguir = false;
+                }
+
+            } catch (NumberFormatException nfe) {
+                System.out.println("Ingrese un dato valido.");
             }
         }
     }

@@ -10,11 +10,10 @@ package taller.arboles.binarios;
  */
 public class Nodo {
     int dato;
-    Nodo padre, hijoDer, hijoIzq;
+    Nodo hijoDer, hijoIzq;
 
     public Nodo(int dato) {
         this.dato = dato;
-        this.padre = null;
         this.hijoDer = null;
         this.hijoIzq = null;
     }
