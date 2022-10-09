@@ -26,6 +26,7 @@ public class TallerArbolesBinarios {
         System.out.println("Bienvenido :D");
 
         while (seguir) {
+            System.out.println("--------------------");
             System.out.println("Ingresa el número correspondiente a la acción que deseas realizar\n"
                     + "1. Agregar un número\n"
                     + "2. Obtener el nivel de un número dado\n"
@@ -41,7 +42,7 @@ public class TallerArbolesBinarios {
             arbBin.insertar(9);
             try {
                 opcion = Integer.parseInt(sc.nextLine());
-                System.out.println(opcion);
+                System.out.println("--------------------");
                 switch (opcion) {
                     case 1:
                         System.out.print("Por favor ingrese el dato a guardar: ");
@@ -65,9 +66,9 @@ public class TallerArbolesBinarios {
                     default:
                         seguir = false;
                 }
-
+                System.out.println("--------------------");
             } catch (NumberFormatException nfe) {
-                System.out.println("Ingrese un dato valido.");
+                System.out.println("----Ingrese un dato valido.----");
             }
         }
     }
