@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ud.ciencias2.directorio;
 
 /**
  *
- * @author lucia
+ * @author Felipe & David
  */
 public class Contacto {
-    
 
     private long id;
     private String nombre;
@@ -21,7 +16,6 @@ public class Contacto {
         this.telefono = telefono;
     }
 
-    
     public long getId() {
         return id;
     }
@@ -45,6 +39,5 @@ public class Contacto {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
-    
+
 }

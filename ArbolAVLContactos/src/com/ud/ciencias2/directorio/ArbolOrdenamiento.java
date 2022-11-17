@@ -1,12 +1,8 @@
-/*
-* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-*/
 package com.ud.ciencias2.directorio;
 
 /**
  *
- * @author Estudiantes
+ * @author Felipe & David
  */
 public class ArbolOrdenamiento<T extends Comparable> extends Arbol<T> {
     
@@ -14,7 +10,6 @@ public class ArbolOrdenamiento<T extends Comparable> extends Arbol<T> {
     
     @Override
     public void insertar(Contacto contacto) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         long key = (contacto.getId());
         this.setRaiz(insertarAVL(getRaiz(), contacto));
     }

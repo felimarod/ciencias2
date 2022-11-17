@@ -1,5 +1,9 @@
 package com.ud.ciencias2.directorio;
 
+/**
+ *
+ * @author Felipe & David
+ */
 public abstract class Nodo <T> extends Arbol <T>{
     
     public int altura;

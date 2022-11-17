@@ -1,49 +1,59 @@
 package com.ud.ciencias2.directorio;
 
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Felipe & David
+ */
 public class Launcher {
+
+    ArbolOrdenamiento<String> arbol;
+    Scanner read;
+    long id = 1;
+
+    Launcher() {
+        arbol = new ArbolOrdenamiento<>();
+        read = new Scanner(System.in);
+    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException, FileNotFoundException, CsvValidationException, CsvException {
+    public static void main(String[] args) {
+        new Launcher().run();
+    }
 
-        ArbolOrdenamiento<Integer> arbol = new ArbolOrdenamiento<Integer>();
-
-        Scanner read = new Scanner(System.in);
+    private void run() {
         int op;
+
         do {
-            System.out.println("\n\n\nDirectorio de Contactos");
-            System.out.println("1. Cargar árbol");
-            System.out.println("2. Buscar Contacto");
-            System.out.println("3. Imprimir inorden");
-            System.out.println("4. Salir");
+            System.out.println("\n\nDirectorio de Contactos\n"
+                    + "1. Cargar datos\n"
+                    + "2. Ingresar contacto\n"
+                    + "3. Buscar Contacto\n"
+                    + "4. Imprimir inorden\n"
+                    + "5. Salir");
 
             op = read.nextInt();
 
             switch (op) {
                 case 1:
-                    cargarArbol(arbol);
+                    leerArchivo();
                     break;
                 case 2:
-                    int id;
-                    System.out.println("Ingrese el id del contacto a buscar");
-                    id = read.nextInt();
-                    arbol.buscar(id);
+                    agregarManual();
                     break;
                 case 3:
+                    String nombre;
+                    System.out.println("Ingrese el nombre del contacto a buscar");
+                    nombre = read.nextLine();
+                    arbol.buscar(nombre);
+                    break;
+                case 4:
                     arbol.recorridoInorden();
                     break;
                 default:
@@ -53,17 +63,36 @@ public class Launcher {
         } while (op != 4);
     }
 
-    public static void cargarArbol(ArbolOrdenamiento<Integer> arbol) throws FileNotFoundException, IOException, CsvValidationException, CsvException {
-        FileReader archivo = new FileReader("/home/felipe/Repositorios/Sistemas/ciencias2/ArbolAVLContactos/src/com/ud/ciencias2/directorio/data-contactos.csv");
-        
-        final CSVReader csvReader = new CSVReader(archivo);
+    public void leerArchivo() {
+        FileReader archivo = null;
+        CSVReader csvReader = null;
+        try {
 
-        // Se insertan los datos al árbol
-        String[] fila = null;
-        long id = 0;
-        while((fila = csvReader.readNext()) != null) {
-            arbol.insertar(new Contacto(++id, fila[0], Long.parseLong(fila[1])));
+            archivo = new FileReader("/home/felipe/Repositorios/Sistemas/ciencias2/ArbolAVLContactos/src/com/ud/ciencias2/directorio/data-contactos.csv");
+            csvReader = new CSVReader(archivo);
+
+            // Se insertan los datos al árbol
+            String[] fila = csvReader.readNext(); // Salta la primer linea
+            while ((fila = csvReader.readNext()) != null) {
+                this.arbol.insertar(new Contacto(id++, fila[0], Long.parseLong(fila[1])));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                archivo.close();
+                csvReader.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
         }
+
+    }
+
+    private void agregarManual() {
+        String nombre = read.nextLine();
+        Long num = Long.parseLong(read.nextLine());
+        this.arbol.insertar(new Contacto(id++, nombre, num));
     }
 
 }

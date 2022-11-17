@@ -1,13 +1,9 @@
-/*
-* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-*/
 package com.ud.ciencias2.directorio;
 
 /**
  * Clase arbol generada de forma abstracta para implementar cualquier tipo de
  * arbol
- * @author Estudiantes
+ * @author Felipe & David
  */
 public abstract class Arbol <T> {
     
